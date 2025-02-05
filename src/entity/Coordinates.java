@@ -1,5 +1,7 @@
 package entity;
 
+import java.lang.Double;
+
 import utility.Validatable;
 
 public class Coordinates implements Validatable {
@@ -36,5 +38,13 @@ public class Coordinates implements Validatable {
             return false;
         }
         return true;
+    }
+
+    @Override
+    public String toString() {
+        return "Coordinates{" +
+                "x=" + x +
+                ", y=" + y +
+                '}';
     }
 }
