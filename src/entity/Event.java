@@ -50,16 +50,17 @@ public class Event implements Validatable {
         if (id <= 0) {
             return false;
         }
-        if ( name == null) {
-            return false;
-        }
-        if (name.isEmpty()){
-            return false;
-        }
+
         if (ticketsCount <= 0) {
             return false;
         }
         if (description == null) {
+            return false;
+        }
+        if (name == null) {
+            return false;
+        }
+        if (name.isEmpty()) {
             return false;
         }
         return true;

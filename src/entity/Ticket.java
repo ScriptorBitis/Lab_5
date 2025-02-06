@@ -1,10 +1,12 @@
 package entity;
 
+import utility.Validatable;
+
 import java.time.LocalDateTime;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 
-public class Ticket {
+public class Ticket implements Validatable {
     private int id; //Значение поля должно быть больше 0, Значение этого поля должно быть уникальным, Значение этого поля должно генерироваться автоматически
     private String name; //Поле не может быть null, Строка не может быть пустой
     private java.time.LocalDateTime creationDate; //Поле не может быть null, Значение этого поля должно генерироваться автоматически
@@ -23,7 +25,7 @@ public class Ticket {
     public static class Builder {
         private String name = null;
 
-        private Integer price = 0;
+        private Integer price = null;
         private float discount = 0;
         private Boolean refundable = null;
         private Coordinates coordinates = null;
@@ -80,6 +82,36 @@ public class Ticket {
 
             return ticket;
         }
+    }
+
+    @Override
+    public boolean validate() {
+        if (id <= 0) {
+            return false;
+        }
+
+        if ( creationDate == null) {
+            return false;
+        }
+        if ( price != null) {
+            if (price <=0){
+                return false;
+            }
+        }
+        if ( discount <=0) {
+            return false;
+        }
+        if ( coordinates == null) {
+            return false;
+        }
+        if ( name == null) {
+            return false;
+        }
+        if (name.isEmpty()){
+            return false;
+        }
+
+        return true;
     }
 
     @Override
