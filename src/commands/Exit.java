@@ -7,4 +7,9 @@ public class Exit extends Command implements Executable{
     public void execute() {
         Engine.finishProgramm();
     }
+
+    @Override
+    public String toString() {
+        return "\\exit";
+    }
 }

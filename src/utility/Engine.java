@@ -12,8 +12,8 @@ public class Engine {
 
     public static void runProgramm() {
         do {
-            Scanner in = new Scanner(System.in);
-            CommandReader.setUserRequest(in.next());
+            Scanner consoleRead = new Scanner(System.in);
+            CommandReader.setUserRequest(consoleRead.next());
 
         } while (flag);
     }

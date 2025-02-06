@@ -21,4 +21,9 @@ public class Help extends Command implements Executable{
     public void execute() {
         System.out.println(helpMessage);
     }
+
+    @Override
+    public String toString() {
+        return "\\help";
+    }
 }

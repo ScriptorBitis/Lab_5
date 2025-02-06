@@ -13,12 +13,17 @@ import java.util.Scanner;
 import static managers.CommandManager.*;
 
 public class Main {
-    public static void main(String[] args) {
-        Executable help = new Help();
-        Executable exit = new Exit();
 
-        CommandManager.addCommand("\\help",help);
-        CommandManager.addCommand("\\exit",exit);
+    private static void setUpCommand(Executable command){
+        CommandManager.addCommand(command.toString(),command);
+
+    }
+    public static void main(String[] args) {
+        //Executable help = new Help();
+        //Executable exit = new Exit();
+
+        setUpCommand(new Help());
+        setUpCommand(new Exit());
         Engine.runProgramm();
 
 
