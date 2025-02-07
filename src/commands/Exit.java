@@ -4,7 +4,7 @@ import utility.Engine;
 public class Exit extends Command implements Executable{
 
     @Override
-    public void execute(String[] splitedConsoleRead) {
+    public void execute(String[] splitedRequest) {
         Engine.finishProgramm();
     }
 

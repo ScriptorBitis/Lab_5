@@ -13,6 +13,7 @@ public class Engine {
     public static void runProgramm() {
         do {
             Scanner consoleRead = new Scanner(System.in);
+
             String[] splitedConsoleRead = consoleRead.nextLine().split(" ");
             CommandReader.setUserRequest(splitedConsoleRead[0],splitedConsoleRead);
         } while (flag);

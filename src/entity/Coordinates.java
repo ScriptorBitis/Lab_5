@@ -17,15 +17,29 @@ public class Coordinates implements Validatable {
         return x;
     }
 
-    //Т.к. поле y- это Double (обертка), то придется изворачиваться в конструкторе
-    public Coordinates(double x, double y) {
-        this.x = x;
-        this.y = new Double(y);
-    }
+    public static class Builder {
+        private double x=0;
+        private Double y=null;
 
-    public Coordinates(double x) {
-        this.x = x;
-        this.y = null;
+        public Builder x(int x) {
+            this.x = x;
+            return this;
+        }
+
+        public Builder y(Double integer) {
+            this.y = integer;
+            return this;
+        }
+
+
+        public Coordinates build() {
+            Coordinates coordinates=new Coordinates();
+            coordinates.y=this.y;
+            coordinates.x=this.x;
+
+            return coordinates;
+        }
+
     }
 
     //Проверка на правильность поля y

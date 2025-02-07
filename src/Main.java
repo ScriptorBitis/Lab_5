@@ -2,16 +2,13 @@ import commands.Executable;
 import commands.Exit;
 import commands.Help;
 import commands.Insert;
+import creators.CoordinatesCreator;
+import creators.EventCreator;
 import entity.Coordinates;
 import entity.Event;
-import entity.Ticket;
-import entity.TicketType;
+import managers.CollectionManager;
 import managers.CommandManager;
-import utility.CommandReader;
 import utility.Engine;
-
-import java.util.Scanner;
-import static managers.CommandManager.*;
 
 public class Main {
 
@@ -26,8 +23,11 @@ public class Main {
         setUpCommand(new Help());
         setUpCommand(new Exit());
         setUpCommand(new Insert());
+        //Event event= EventCreator.createEvent();
+        //System.out.println(event.toString());
         Engine.runProgramm();
-        Ticket ticket= new Ticket.Builder().coordinates(new Coordinates(12,14)).build();
+        System.out.println(CollectionManager.getCOLLECTION().toString());
+
 
 
         //System.out.println(CommandManager.getCommands().toString());

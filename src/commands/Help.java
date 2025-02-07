@@ -18,7 +18,7 @@ public class Help extends Command implements Executable{
             "print_ascending : вывести элементы коллекции в порядке возрастания";
 
     @Override
-    public void execute(String[] splitedConsoleRead) {
+    public void execute(String[] splitedRequest) {
         System.out.println(helpMessage);
     }
 
