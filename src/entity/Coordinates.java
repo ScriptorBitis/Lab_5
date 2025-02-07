@@ -21,6 +21,10 @@ public class Coordinates implements Validatable {
         private double x=0;
         private Double y=null;
 
+        public Double getY() {
+            return y;
+        }
+
         public Builder x(int x) {
             this.x = x;
             return this;

@@ -2,10 +2,6 @@ import commands.Executable;
 import commands.Exit;
 import commands.Help;
 import commands.Insert;
-import creators.CoordinatesCreator;
-import creators.EventCreator;
-import entity.Coordinates;
-import entity.Event;
 import managers.CollectionManager;
 import managers.CommandManager;
 import utility.Engine;
@@ -19,7 +15,7 @@ public class Main {
     public static void main(String[] args) {
         //Executable help = new Help();
         //Executable exit = new Exit();
-
+        //int a=Integer.valueOf("ads");
         setUpCommand(new Help());
         setUpCommand(new Exit());
         setUpCommand(new Insert());

@@ -18,6 +18,10 @@ public class Event implements Validatable {
         private int ticketsCount = 0;
         private String description = null;
 
+        public int getTicketsCount() {
+            return ticketsCount;
+        }
+
         public Builder name(String name) {
             this.name = name;
             return this;

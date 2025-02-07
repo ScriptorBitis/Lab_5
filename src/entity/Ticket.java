@@ -28,7 +28,6 @@ public class Ticket implements Validatable {
 
     public static class Builder {
         private String name = null;
-
         private Integer price = null;
         private float discount = 0;
         private Boolean refundable = null;
@@ -36,11 +35,14 @@ public class Ticket implements Validatable {
         private TicketType type = null;
         private Event event = null;
 
+        public float getDiscount() {
+            return discount;
+        }
+
         public Builder name(String name) {
             this.name = name;
             return this;
         }
-
 
 
         public Builder price(Integer price) {
@@ -73,16 +75,16 @@ public class Ticket implements Validatable {
             return this;
         }
 
-        public Ticket  build() {
-            Ticket ticket= new Ticket();
-            ticket.name=this.name;
+        public Ticket build() {
+            Ticket ticket = new Ticket();
+            ticket.name = this.name;
 
-            ticket.price=this.price;
-            ticket.discount=this.discount;
-            ticket.refundable=this.refundable;
-            ticket.coordinates=this.coordinates;
-            ticket.type=this.type;
-            ticket.event=this.event;
+            ticket.price = this.price;
+            ticket.discount = this.discount;
+            ticket.refundable = this.refundable;
+            ticket.coordinates = this.coordinates;
+            ticket.type = this.type;
+            ticket.event = this.event;
 
             return ticket;
         }
@@ -94,28 +96,28 @@ public class Ticket implements Validatable {
             return false;
         }
 
-        if ( creationDate == null) {
+        if (creationDate == null) {
             return false;
         }
-        if ( price != null) {
-            if (price <=0){
+        if (price != null) {
+            if (price <= 0) {
                 return false;
             }
         }
-        if ( discount <=0) {
+        if (discount <= 0) {
             return false;
         }
-        if ( coordinates == null) {
+        if (coordinates == null) {
             return false;
         }
-        if ( name == null) {
+        if (name == null) {
             return false;
         }
-        if (name.isEmpty()){
+        if (name.isEmpty()) {
             return false;
         }
 
-        return true;
+        return true && this.coordinates.validate();
     }
 
     @Override
