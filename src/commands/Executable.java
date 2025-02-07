@@ -1,7 +1,7 @@
 package commands;
 
 public interface Executable {
-    default void execute(){
+    default void execute(String[] splitedConsoleRead){
         System.out.println("Команда выполнена?");
     }
 }

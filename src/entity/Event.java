@@ -12,7 +12,7 @@ public class Event implements Validatable {
         this.id = this.hashCode();
     }
 
-    // вместо перегрузки компьютера мы делаем билдер
+    // вместо перегрузки rjycnhernjhf мы делаем билдер
     public static class Builder {
         private String name = null;
         private int ticketsCount = 0;

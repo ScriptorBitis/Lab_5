@@ -22,6 +22,10 @@ public class Ticket implements Validatable {
         this.creationDate = LocalDateTime.now().withNano(0);
     }
 
+    public int getId() {
+        return id;
+    }
+
     public static class Builder {
         private String name = null;
 

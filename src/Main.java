@@ -1,6 +1,7 @@
 import commands.Executable;
 import commands.Exit;
 import commands.Help;
+import commands.Insert;
 import entity.Coordinates;
 import entity.Event;
 import entity.Ticket;
@@ -24,7 +25,9 @@ public class Main {
 
         setUpCommand(new Help());
         setUpCommand(new Exit());
+        setUpCommand(new Insert());
         Engine.runProgramm();
+        Ticket ticket= new Ticket.Builder().coordinates(new Coordinates(12,14)).build();
 
 
         //System.out.println(CommandManager.getCommands().toString());

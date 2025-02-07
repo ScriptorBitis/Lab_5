@@ -1,15 +1,16 @@
 package commands;
-import utility.Engine;
 
-public class Exit extends Command implements Executable{
+import utility.Creator;
+
+public class Insert extends Command implements Executable{
 
     @Override
     public void execute(String[] splitedConsoleRead) {
-        Engine.finishProgramm();
+        Creator.createElement();
     }
 
     @Override
     public String toString() {
-        return "exit";
+        return "insert";
     }
 }
