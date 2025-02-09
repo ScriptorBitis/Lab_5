@@ -44,7 +44,9 @@ public class Event implements Validatable {
             event.description = this.description;
 
             return event;
+
         }
+
 
     }
 
@@ -76,7 +78,7 @@ public class Event implements Validatable {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", ticketsCount=" + ticketsCount +
-                ", description='" + description + '\'' +
+                ", description=" + description + //Убрал ' ', чтобы не путаться с null
                 '}';
     }
 }

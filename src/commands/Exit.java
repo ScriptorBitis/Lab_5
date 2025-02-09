@@ -12,4 +12,6 @@ public class Exit extends Command implements Executable{
     public String toString() {
         return "exit";
     }
+
+
 }

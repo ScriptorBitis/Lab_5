@@ -2,25 +2,27 @@ import commands.Executable;
 import commands.Exit;
 import commands.Help;
 import commands.Insert;
+import entity.creators.EventCreator;
 import managers.CollectionManager;
 import managers.CommandManager;
 import utility.Engine;
 
+import java.util.Scanner;
+
 public class Main {
 
-    private static void setUpCommand(Executable command){
-        CommandManager.addCommand(command.toString(),command);
 
-    }
     public static void main(String[] args) {
+        //TODO: убрать commandreader, добавить тербования к командам в описании команд, проверять в менеджере команд
         //Executable help = new Help();
         //Executable exit = new Exit();
         //int a=Integer.valueOf("ads");
-        setUpCommand(new Help());
-        setUpCommand(new Exit());
-        setUpCommand(new Insert());
+        CommandManager.setUpCommand(new Help());
+        CommandManager.setUpCommand(new Exit());
+        CommandManager.setUpCommand(new Insert(3,"{element}"));
         //Event event= EventCreator.createEvent();
         //System.out.println(event.toString());
+
         Engine.runProgramm();
         System.out.println(CollectionManager.getCOLLECTION().toString());
 

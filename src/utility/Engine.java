@@ -1,5 +1,7 @@
 package utility;
 
+import managers.CommandManager;
+
 import java.util.Scanner;
 
 
@@ -14,8 +16,7 @@ public class Engine {
         do {
             Scanner consoleRead = new Scanner(System.in);
 
-            String[] splitedConsoleRead = consoleRead.nextLine().split(" ");
-            CommandReader.setUserRequest(splitedConsoleRead[0],splitedConsoleRead);
+            CommandManager.setUserRequest(consoleRead.nextLine().trim().split(" "));
         } while (flag);
     }
 }

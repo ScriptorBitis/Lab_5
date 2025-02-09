@@ -1,4 +1,4 @@
-package commands.creators;
+package entity.creators;
 
 public abstract class Creator  {
 
