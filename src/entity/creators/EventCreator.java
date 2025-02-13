@@ -1,15 +1,15 @@
 package entity.creators;
 
 import entity.Event;
-import exeptions.WrongTypeInput;
+import exeptions.ExitWhileBuilding;
+import exeptions.WrongInput;
 
-import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class EventCreator extends Creator {
     private static Scanner consoleRead = new Scanner(System.in);
 
-    public static Event createEvent() throws WrongTypeInput {
+    public static Event createEvent() throws WrongInput {
         Event event=null;
         Event.Builder builder = new Event.Builder();
 
@@ -37,6 +37,7 @@ public class EventCreator extends Creator {
                         event = null;
                         pass = false;
                         break;
+
                     default:
                         pass = true;
                         System.out.println("Ошибка ввода.\nВыберите одно из двухъ значений");
@@ -60,6 +61,9 @@ public class EventCreator extends Creator {
         do {
             System.out.println("Введите значение для параметра 'name'");
             name = consoleRead.nextLine().trim();
+            if (name.equals("exit")){
+                throw new ExitWhileBuilding("Введена команда exit во время ввода имени");
+            }
             if (name.isEmpty()) {
                 System.out.println("Имя не может быть пустым!");
 
@@ -77,13 +81,17 @@ public class EventCreator extends Creator {
         boolean pass=true;
         do{
         try {
-            ticketCount=Integer.valueOf(consoleRead.nextLine().trim());
+            String userRequest=consoleRead.nextLine().trim();
+            if (userRequest.equals("exit")){
+                throw new ExitWhileBuilding("Введена команда exit во время ввода количества билетов");
+            }
+            Integer.valueOf(userRequest);
 
             if (ticketCount <= 0) {
-                throw new WrongTypeInput("Количество билетов отрицательное");
+                throw new WrongInput("Количество билетов отрицательное");
             }
             pass=false;
-        } catch (NumberFormatException | WrongTypeInput exception) {
+        } catch (NumberFormatException | WrongInput exception) {
             System.out.println("Ошибка: введено неправильное значение.\nЗначение должно быть больше 0");
 
         }
@@ -95,6 +103,9 @@ public class EventCreator extends Creator {
         boolean pass=true;
         System.out.println("Введите описание мероприятия.Ввод пустой строки будет засчитан как отсутствие описания");
         description=consoleRead.nextLine().trim();
+        if (description.equals("exit")){
+            throw new ExitWhileBuilding("Введена команда exit во время ввода описания");
+        }
         if (description.isEmpty()){
             return null;
         }

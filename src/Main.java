@@ -1,51 +1,67 @@
-import commands.Executable;
-import commands.Exit;
-import commands.Help;
-import commands.Insert;
+import commands.*;
+import entity.Coordinates;
+import entity.Ticket;
+import entity.TicketType;
 import entity.creators.EventCreator;
 import managers.CollectionManager;
 import managers.CommandManager;
 import utility.Engine;
 
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class Main {
 
 
     public static void main(String[] args) {
-        //TODO: убрать commandreader, добавить тербования к командам в описании команд, проверять в менеджере команд
-        //Executable help = new Help();
-        //Executable exit = new Exit();
-        //int a=Integer.valueOf("ads");
+        //TODO: реализовать работающий exit во время создания
+        // TODO: убрать {element}
+
+
+
         CommandManager.setUpCommand(new Help());
         CommandManager.setUpCommand(new Exit());
-        CommandManager.setUpCommand(new Insert(3,"{element}"));
-        //Event event= EventCreator.createEvent();
-        //System.out.println(event.toString());
+        CommandManager.setUpCommand(new Insert(2));
+        CommandManager.setUpCommand(new Show());
+        CommandManager.setUpCommand(new Clear());
+        CommandManager.setUpCommand(new Info());
+        CommandManager.setUpCommand(new RemoveKey(2));
+        CommandManager.setUpCommand(new UpdateId(2));
+        CommandManager.setUpCommand(new PrintAscending());
+
+
+
+        System.out.println(CommandManager.getCommands().toString());
+
+        Ticket.Builder builder=new Ticket.Builder();
+        Coordinates.Builder builder1 = new Coordinates.Builder();
+        Coordinates coordinates=builder1.x(15).y(Double.valueOf(24)).build();
+        Ticket ticket=builder.price(1500).name("Билетик 1").coordinates(coordinates).discount(15).refundable(true).type(TicketType.CHEAP).build();
+        CollectionManager.addTicket("aboba1",ticket);
+
+        coordinates=builder1.x(125).y(Double.valueOf(324)).build();
+        ticket=builder.price(3500).name("Билетик 2").coordinates(coordinates).discount(25).refundable(false).type(TicketType.VIP).build();
+        CollectionManager.addTicket("aboba2",ticket);
+
+
 
         Engine.runProgramm();
-        System.out.println(CollectionManager.getCOLLECTION().toString());
 
 
+        /*
+        save : сохранить коллекцию в файл
+        execute_script file_name : считать и исполнить скрипт из указанного файла. В скрипте содержатся команды в таком же виде, в котором их вводит пользователь в интерактивном режиме.
 
-        //System.out.println(CommandManager.getCommands().toString());
+        remove_greater {element} : удалить из коллекции все элементы, превышающие заданный
+        remove_lower {element} : удалить из коллекции все элементы, меньшие, чем заданный
 
+        replace_if_lowe null {element} : заменить значение по ключу, если новое значение меньше старого
+        remove_any_by_type type : удалить из коллекции один элемент, значение поля type которого эквивалентно заданному
 
-        //System.out.println();
+        max_by_coordinates : вывести любой объект из коллекции, значение поля coordinates которого является максимальным
 
-        //System.out.println();
+         */
 
-        //Coordinates a=new Coordinates(12);
-        //System.out.println(a.getY());
-        //System.out.println(a.validate());
-
-        //Event event = new Event.Builder().description("Artom (Артем)  pokupaet zajigalku").ticketsCount(12).build();
-        //System.out.println(event.toString());
-        //System.out.println(event.validate());
-
-        //Ticket ticket=new Ticket.Builder().event(event).name("Prikol").coordinates(new Coordinates(12,13)).discount(15).price(-1).type(TicketType.VIP).build();
-        //System.out.println(ticket.toString());
-        //System.out.println(ticket.validate());
 
     }
 

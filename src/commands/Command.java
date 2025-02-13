@@ -2,11 +2,9 @@ package commands;
 
 public abstract class Command {
     int wordsCount;
-    String necessaryToken;
 
-    public Command(int wordsCount, String necessaryToken) {
+    public Command(int wordsCount) {
         this.wordsCount = wordsCount;
-        this.necessaryToken = necessaryToken;
     }
 
     public Command() {
@@ -16,7 +14,4 @@ public abstract class Command {
         return wordsCount;
     }
 
-    public String getNecessaryToken() {
-        return necessaryToken;
-    }
 }

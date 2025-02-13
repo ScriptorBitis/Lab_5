@@ -1,32 +1,34 @@
 package entity.creators;
 //insert aboba {element}
 
-import entity.Coordinates;
-import entity.Event;
 import entity.Ticket;
 import entity.TicketType;
-import exeptions.WrongTypeInput;
-import utility.console.Console;
+import exeptions.ExitWhileBuilding;
+import exeptions.WrongInput;
 
-import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class TicketCreator extends Creator {
     private static Scanner consoleRead = new Scanner(System.in);
 
-    public static Ticket createTicket() throws WrongTypeInput {
+    public static Ticket createTicket(String message) throws WrongInput {
 
 
-        System.out.println("Инициализировано создание объекта для добавление в коллекцию");
+        System.out.println(message);
         Ticket.Builder builder = new Ticket.Builder();
-        builder.name(askName());
-        builder.price(askPrice());
-        builder.discount(askDiscount());
-        builder.refundable(askRefundable());
-        builder.type(askTicketType());
-        builder.coordinates(CoordinatesCreator.createCoordinates());
-        builder.event(EventCreator.createEvent());
+        try {
+            builder.name(askName());
+            builder.price(askPrice());
+            builder.discount(askDiscount());
+            builder.refundable(askRefundable());
+            builder.type(askTicketType());
+            builder.coordinates(CoordinatesCreator.createCoordinates());
+            builder.event(EventCreator.createEvent());
+        }catch (ExitWhileBuilding exitWhileBuilding){
+            System.out.println(exitWhileBuilding.getMessage());
+        }
         Ticket element = builder.build();
+
         return element;
     }
 
@@ -37,6 +39,9 @@ public class TicketCreator extends Creator {
         do {
             System.out.println("Введите значение для параметра 'name'");
             name = consoleRead.nextLine().trim();
+            if (name.equals("exit")){
+                throw new ExitWhileBuilding("Введена команда exit во время ввода имени");
+            }
             if (name.isEmpty()) {
                 System.out.println("Имя не может быть пустым!");
 
@@ -58,22 +63,24 @@ public class TicketCreator extends Creator {
 
             try {
                 String userRequest = consoleRead.nextLine().trim();
+                if (userRequest.equals("exit")){
+                    throw new ExitWhileBuilding("Введена команда exit во время ввода цены");
+                }
                 if (userRequest.isEmpty()) {
                     integer = null;
                 } else {
                     integer = Integer.valueOf(userRequest);
                     if (integer <= 0) {
-                        throw new WrongTypeInput("Значение цены не натуральное, а отрицательное");
+                        throw new WrongInput("Значение цены не натуральное, а отрицательное");
                     }
                 }
                 //integer=consoleRead.nextInt(); //  в этом случае критическая ошибка
 
                 pass = false;
-            } catch (NumberFormatException | WrongTypeInput exception) {
+            } catch (NumberFormatException | WrongInput exception) {
                 System.out.println(exception.toString());
                 System.out.println("Ошибка: введено неправильное значение.\nPrice соответствует число без букв и пробелов >0. Повторите ввод");
-                //throw new WrongTypeInput("Ошибка ввода");
-                //TODO сделать exit =)
+
             }
 
         } while (pass);
@@ -89,14 +96,21 @@ public class TicketCreator extends Creator {
         do {
 
             try {
-                discount = Float.valueOf(consoleRead.nextLine().trim());
+                String userRequest=consoleRead.nextLine().trim();
+
+
+                if (userRequest.equals("exit")){
+                    throw new ExitWhileBuilding("Введена команда exit во время ввода скидки");
+                }
+                discount = Float.valueOf(userRequest);
+
                 if (discount <= 0 || discount > 100) {
-                    throw new WrongTypeInput("Введено неправильное значения параметра 'скидка");
+                    throw new WrongInput("Введено неправильное значения параметра 'скидка");
                 }
                 pass = false;
-            } catch (NumberFormatException | WrongTypeInput exception) {
+            } catch (NumberFormatException | WrongInput exception) {
                 System.out.println("Ошибка: введено неправильное значение.\nСкидке соответствует число без букв и пробелов. Повторите ввод");
-                //throw new WrongTypeInput("Ошибка ввода");
+
             }
         } while (pass);
 
@@ -108,7 +122,7 @@ public class TicketCreator extends Creator {
 
         Boolean refundable=null;
         Boolean pass = true;
-        System.out.println("Введите значение для параметра 'refundable'\nВыберите соответствующее значение\n1 : да, билет вернуть можно\n2 : нет, вернуть билет нельзя\n3 : не вводить параметр");
+        System.out.println("Введите значение для параметра 'refundable'\nВыберите соответствующее значение\n1 : да, билет вернуть можно\n2 : нет, вернуть билет нельзя\n3 : не вводить параметр\n4 : прервать создание объекта");
         do {
             try {
 
@@ -126,7 +140,12 @@ public class TicketCreator extends Creator {
                         refundable = null;
                         pass = false;
                         break;
+                    case (4):
+                        throw new ExitWhileBuilding("Введена команда exit во время ввода Enum`а");
+
+
                     default:
+
                         System.out.println("Ошибка ввода\nВыберите одно из двух значений.Введите '1' ,или '2', или '3'");
                         break;
                 }
@@ -139,7 +158,7 @@ public class TicketCreator extends Creator {
     }
 
     private static TicketType askTicketType() {
-        System.out.println("Выберите значение для параметра 'type':\n1 : VIP\n2 : BUDGETARY\n3 : CHEAP\n4 : не вводить параметр\n(необходимо ввести цифру)");
+        System.out.println("Выберите значение для параметра 'type':\n1 : VIP\n2 : BUDGETARY\n3 : CHEAP\n4 : не вводить параметр\n5 : прервать создание объекта\n(необходимо ввести цифру)");
         TicketType ticketType = null;
         Boolean pass = true;
         do {
@@ -161,6 +180,8 @@ public class TicketCreator extends Creator {
                         ticketType = null;
                         pass = false;
                         break;
+                    case (5):
+                        throw new ExitWhileBuilding("Введена команда exit во время ввода Enum`а");
                     default:
                         System.out.println("Ошибка ввода\nВыберите одно из предоставленных значений");
                 }

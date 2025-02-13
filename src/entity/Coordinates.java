@@ -30,8 +30,8 @@ public class Coordinates implements Validatable {
             return this;
         }
 
-        public Builder y(Double integer) {
-            this.y = integer;
+        public Builder y(Double y) {
+            this.y = y;
             return this;
         }
 

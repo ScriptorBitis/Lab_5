@@ -18,12 +18,16 @@ public class Ticket implements Validatable {
     private Event event; //Поле может быть null
 
     public Ticket() {
-        this.id = this.hashCode();
         this.creationDate = LocalDateTime.now().withNano(0);
+        this.id = this.hashCode();
     }
 
     public int getId() {
         return id;
+    }
+
+    public Integer getPrice() {
+        return price;
     }
 
     public static class Builder {
@@ -134,4 +138,5 @@ public class Ticket implements Validatable {
                 ", event=" + event +
                 '}';
     }
+
 }

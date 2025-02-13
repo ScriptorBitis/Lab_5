@@ -9,7 +9,7 @@ public class Event implements Validatable {
     private String description; //Поле может быть null
 
     public Event() {
-        this.id = this.hashCode();
+
     }
 
     // вместо перегрузки rjycnhernjhf мы делаем билдер
@@ -42,6 +42,7 @@ public class Event implements Validatable {
             event.name = this.name;
             event.ticketsCount = this.ticketsCount;
             event.description = this.description;
+            event.id = this.hashCode();
 
             return event;
 
