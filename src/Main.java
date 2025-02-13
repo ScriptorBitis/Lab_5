@@ -2,20 +2,16 @@ import commands.*;
 import entity.Coordinates;
 import entity.Ticket;
 import entity.TicketType;
-import entity.creators.EventCreator;
 import managers.CollectionManager;
 import managers.CommandManager;
 import utility.Engine;
-
-import java.util.Arrays;
-import java.util.Scanner;
 
 public class Main {
 
 
     public static void main(String[] args) {
-        //TODO: реализовать работающий exit во время создания
-        // TODO: убрать {element}
+
+
 
 
 
@@ -28,6 +24,7 @@ public class Main {
         CommandManager.setUpCommand(new RemoveKey(2));
         CommandManager.setUpCommand(new UpdateId(2));
         CommandManager.setUpCommand(new PrintAscending());
+        CommandManager.setUpCommand(new MaxByCoordinates());
 
 
 
@@ -57,9 +54,6 @@ public class Main {
 
         replace_if_lowe null {element} : заменить значение по ключу, если новое значение меньше старого
         remove_any_by_type type : удалить из коллекции один элемент, значение поля type которого эквивалентно заданному
-
-        max_by_coordinates : вывести любой объект из коллекции, значение поля coordinates которого является максимальным
-
          */
 
 

@@ -30,6 +30,10 @@ public class Ticket implements Validatable {
         return price;
     }
 
+    public Coordinates getCoordinates() {
+        return coordinates;
+    }
+
     public static class Builder {
         private String name = null;
         private Integer price = null;
@@ -39,9 +43,7 @@ public class Ticket implements Validatable {
         private TicketType type = null;
         private Event event = null;
 
-        public float getDiscount() {
-            return discount;
-        }
+
 
         public Builder name(String name) {
             this.name = name;
