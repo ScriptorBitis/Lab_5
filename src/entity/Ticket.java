@@ -7,9 +7,9 @@ import java.time.LocalDateTime;
 import java.time.ZoneId;
 
 public class Ticket implements Validatable {
-    private int id; //Значение поля должно быть больше 0, Значение этого поля должно быть уникальным, Значение этого поля должно генерироваться автоматически
+    private final int id; //Значение поля должно быть больше 0, Значение этого поля должно быть уникальным, Значение этого поля должно генерироваться автоматически
     private String name; //Поле не может быть null, Строка не может быть пустой
-    private java.time.LocalDateTime creationDate; //Поле не может быть null, Значение этого поля должно генерироваться автоматически
+    private final java.time.LocalDateTime creationDate; //Поле не может быть null, Значение этого поля должно генерироваться автоматически
     private Integer price; //Поле может быть null, Значение поля должно быть больше 0
     private float discount; //Значение поля должно быть больше 0, Максимальное значение поля: 100
     private Boolean refundable; //Поле может быть null
@@ -27,6 +27,9 @@ public class Ticket implements Validatable {
     }
 
     public Integer getPrice() {
+        if (this.price==null){
+            return Integer.MIN_VALUE;
+        }
         return price;
     }
 
@@ -123,7 +126,7 @@ public class Ticket implements Validatable {
             return false;
         }
 
-        return true && this.coordinates.validate();
+        return this.coordinates.validate();
     }
 
     @Override

@@ -1,5 +1,6 @@
 import commands.*;
 import entity.Coordinates;
+import entity.Event;
 import entity.Ticket;
 import entity.TicketType;
 import managers.CollectionManager;
@@ -10,6 +11,8 @@ public class Main {
 
 
     public static void main(String[] args) {
+
+        //TODO : РЕПЛЕЙС ИФ ЛОВЕ ДОДЕЛАТЬ????????????
 
 
 
@@ -25,8 +28,7 @@ public class Main {
         CommandManager.setUpCommand(new UpdateId(2));
         CommandManager.setUpCommand(new PrintAscending());
         CommandManager.setUpCommand(new MaxByCoordinates());
-
-
+        CommandManager.setUpCommand(new ReplaceIfLowe());
 
         System.out.println(CommandManager.getCommands().toString());
 
@@ -40,6 +42,10 @@ public class Main {
         ticket=builder.price(3500).name("Билетик 2").coordinates(coordinates).discount(25).refundable(false).type(TicketType.VIP).build();
         CollectionManager.addTicket("aboba2",ticket);
 
+        int i = 0;
+        do {
+            i++;
+        }while (i<4);
 
 
         Engine.runProgramm();
@@ -52,8 +58,9 @@ public class Main {
         remove_greater {element} : удалить из коллекции все элементы, превышающие заданный
         remove_lower {element} : удалить из коллекции все элементы, меньшие, чем заданный
 
-        replace_if_lowe null {element} : заменить значение по ключу, если новое значение меньше старого
+
         remove_any_by_type type : удалить из коллекции один элемент, значение поля type которого эквивалентно заданному
+        \\TODO вроде готова replace_if_lowe null {element} : заменить значение по ключу, если новое значение меньше старого
          */
 
 

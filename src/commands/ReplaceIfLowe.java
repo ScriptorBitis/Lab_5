@@ -1,0 +1,56 @@
+package commands;
+
+import entity.Ticket;
+import entity.creators.TicketCreator;
+import managers.CollectionManager;
+
+import java.util.Scanner;
+
+public class ReplaceIfLowe extends Command implements Executable {
+
+    @Override
+    public void execute(String[] splitedConsoleRead) {
+        Scanner consoleRead = new Scanner(System.in);
+        Ticket ticket = TicketCreator.createTicket("Создание билета для сравнения !цены! и возможной последующей замены");
+        System.out.println("Ваш созданный билет:\n"+ticket.toString());
+
+
+        boolean pass=true;
+        do {
+            System.out.println("Доступные ключи для доступа к билетам : " + CollectionManager.getCOLLECTION().keySet());
+            System.out.println("Введите ключ");
+            String key = consoleRead.nextLine();
+            if (CollectionManager.getCOLLECTION().containsKey(key)) {
+                System.out.println(CollectionManager.getCOLLECTION().get(key).toString());
+                System.out.println("Вы хотели сравнить с этим билетом?\n1 : да\n2 : нет\n3 : прервать замену билета");
+                String userDecision = consoleRead.nextLine().trim();
+                switch (userDecision){
+                    case ("1"):
+                        pass=false;
+                        if (CollectionManager.getCOLLECTION().get(key).getPrice()>ticket.getPrice()){
+                            CollectionManager.getCOLLECTION().replace(key,ticket);
+                            System.out.println("Билет успешно обновлен!");
+                        }else {
+                            System.out.println("Билет не обновлен: новая цена больше старой");
+                        }
+                        break;
+                    case ("2"):
+                        break;
+                    case ("3"):
+                        pass=false;
+                        System.out.println("Замена билета прервана!");
+                        break;
+                    default:
+                        System.out.println("Должно быть введено значение, равное '1' или '2'");
+                }
+            } else {
+                System.out.println("Ключ введен неверно");
+            }
+        }while (pass);
+    }
+
+    @Override
+    public String toString() {
+        return "replace_if_lowe";
+    }
+}

@@ -84,7 +84,6 @@ public class TicketCreator extends Creator {
             }
 
         } while (pass);
-        System.out.println("Гойда");
         return integer;
     }
 

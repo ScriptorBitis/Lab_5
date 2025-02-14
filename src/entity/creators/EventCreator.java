@@ -29,7 +29,7 @@ public class EventCreator extends Creator {
                         builder.name(askName());
                         builder.ticketsCount(askTicketCount());
                         builder.description(askDescription());
-                        System.out.println("Контроль"+ builder.toString());
+
                         event = builder.build();
                         pass = false;
                         break;
@@ -85,7 +85,7 @@ public class EventCreator extends Creator {
             if (userRequest.equals("exit")){
                 throw new ExitWhileBuilding("Введена команда exit во время ввода количества билетов");
             }
-            Integer.valueOf(userRequest);
+            ticketCount=Integer.valueOf(userRequest);
 
             if (ticketCount <= 0) {
                 throw new WrongInput("Количество билетов отрицательное");
