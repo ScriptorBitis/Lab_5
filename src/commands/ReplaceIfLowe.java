@@ -1,7 +1,8 @@
 package commands;
 
-import entity.Ticket;
-import entity.creators.TicketCreator;
+import exeptions.ExitWhileExecuting;
+import models.Ticket;
+import models.creators.TicketCreator;
 import managers.CollectionManager;
 
 import java.util.Scanner;
@@ -16,37 +17,45 @@ public class ReplaceIfLowe extends Command implements Executable {
 
 
         boolean pass=true;
-        do {
-            System.out.println("Доступные ключи для доступа к билетам : " + CollectionManager.getCOLLECTION().keySet());
-            System.out.println("Введите ключ");
-            String key = consoleRead.nextLine();
-            if (CollectionManager.getCOLLECTION().containsKey(key)) {
-                System.out.println(CollectionManager.getCOLLECTION().get(key).toString());
-                System.out.println("Вы хотели сравнить с этим билетом?\n1 : да\n2 : нет\n3 : прервать замену билета");
-                String userDecision = consoleRead.nextLine().trim();
-                switch (userDecision){
-                    case ("1"):
-                        pass=false;
-                        if (CollectionManager.getCOLLECTION().get(key).getPrice()>ticket.getPrice()){
-                            CollectionManager.getCOLLECTION().replace(key,ticket);
-                            System.out.println("Билет успешно обновлен!");
-                        }else {
-                            System.out.println("Билет не обновлен: новая цена больше старой");
-                        }
-                        break;
-                    case ("2"):
-                        break;
-                    case ("3"):
-                        pass=false;
-                        System.out.println("Замена билета прервана!");
-                        break;
-                    default:
-                        System.out.println("Должно быть введено значение, равное '1' или '2'");
+        try {
+            do {
+                System.out.println("Доступные ключи для доступа к билетам : " + CollectionManager.getCOLLECTION().keySet());
+                System.out.println("Введите ключ");
+                String key = consoleRead.nextLine();
+                if (key.equals("exit")){
+                    System.out.println("Возвращение на домашнюю страницу");
+                    throw new ExitWhileExecuting("Выход во время обновления по id");
                 }
-            } else {
-                System.out.println("Ключ введен неверно");
-            }
-        }while (pass);
+                if (CollectionManager.getCOLLECTION().containsKey(key)) {
+                    System.out.println(CollectionManager.getCOLLECTION().get(key).toString());
+                    System.out.println("Вы хотели сравнить с этим билетом?\n1 : да\n2 : нет\n3 : прервать замену билета");
+                    String userDecision = consoleRead.nextLine().trim();
+                    switch (userDecision){
+                        case ("1"):
+                            pass=false;
+                            if (CollectionManager.getCOLLECTION().get(key).getPrice()>ticket.getPrice()){
+                                CollectionManager.getCOLLECTION().replace(key,ticket);
+                                System.out.println("Билет успешно обновлен!");
+                            }else {
+                                System.out.println("Билет не обновлен: новая цена больше старой");
+                            }
+                            break;
+                        case ("2"):
+                            break;
+                        case ("3"):
+                            pass=false;
+                            System.out.println("Замена билета прервана!");
+                            break;
+                        default:
+                            System.out.println("Должно быть введено значение, равное '1' или '2'");
+                    }
+                } else {
+                    System.out.println("Ключ введен неверно");
+                }
+            }while (pass);
+        } catch (ExitWhileExecuting exeption) {
+            return;
+        }
     }
 
     @Override

@@ -1,9 +1,9 @@
-package entity.creators;
-//insert aboba {element}
+package models.creators;
 
-import entity.Ticket;
-import entity.TicketType;
-import exeptions.ExitWhileBuilding;
+
+import models.Ticket;
+import models.TicketType;
+import exeptions.ExitWhileExecuting;
 import exeptions.WrongInput;
 
 import java.util.Scanner;
@@ -24,7 +24,7 @@ public class TicketCreator extends Creator {
             builder.type(askTicketType());
             builder.coordinates(CoordinatesCreator.createCoordinates());
             builder.event(EventCreator.createEvent());
-        }catch (ExitWhileBuilding exitWhileBuilding){
+        }catch (ExitWhileExecuting exitWhileBuilding){
             System.out.println(exitWhileBuilding.getMessage());
         }
         Ticket element = builder.build();
@@ -40,7 +40,7 @@ public class TicketCreator extends Creator {
             System.out.print("Введите значение для параметра 'name' ->");
             name = consoleRead.nextLine().trim();
             if (name.equals("exit")){
-                throw new ExitWhileBuilding("Введена команда exit во время ввода имени");
+                throw new ExitWhileExecuting("Введена команда exit во время ввода имени");
             }
             if (name.isEmpty()) {
                 System.out.println("Имя не может быть пустым!");
@@ -56,7 +56,7 @@ public class TicketCreator extends Creator {
 
     private static Integer askPrice() {
 
-        System.out.println("Введите значение для параметра 'price'.Ввод пустой строки будет засчитан за отсутствие параметра.\nВас предупредили");
+        System.out.print("Введите значение для параметра 'price'.Ввод пустой строки будет засчитан за отсутствие параметра.\nВас предупредили\n->");
         Integer integer = 0;
         Boolean pass = true;
         do {
@@ -64,7 +64,7 @@ public class TicketCreator extends Creator {
             try {
                 String userRequest = consoleRead.nextLine().trim();
                 if (userRequest.equals("exit")){
-                    throw new ExitWhileBuilding("Введена команда exit во время ввода цены");
+                    throw new ExitWhileExecuting("Введена команда exit во время ввода цены");
                 }
                 if (userRequest.isEmpty()) {
                     integer = null;
@@ -74,7 +74,7 @@ public class TicketCreator extends Creator {
                         throw new WrongInput("Значение цены не натуральное, а отрицательное");
                     }
                 }
-                //integer=consoleRead.nextInt(); //  в этом случае критическая ошибка
+
 
                 pass = false;
             } catch (NumberFormatException | WrongInput exception) {
@@ -89,7 +89,7 @@ public class TicketCreator extends Creator {
 
     private static float askDiscount() {
 
-        System.out.println("Введите значение для параметра 'скидка' > 0 и <= 100\nПример ввода: 15.5");
+        System.out.print("Введите значение для параметра 'скидка' > 0 и <= 100\nПример ввода: 15.5\n->");
         float discount = 0;
         Boolean pass = true;
         do {
@@ -99,7 +99,7 @@ public class TicketCreator extends Creator {
 
 
                 if (userRequest.equals("exit")){
-                    throw new ExitWhileBuilding("Введена команда exit во время ввода скидки");
+                    throw new ExitWhileExecuting("Введена команда exit во время ввода скидки");
                 }
                 discount = Float.valueOf(userRequest);
 
@@ -121,7 +121,7 @@ public class TicketCreator extends Creator {
 
         Boolean refundable=null;
         Boolean pass = true;
-        System.out.println("Введите значение для параметра 'refundable'\nВыберите соответствующее значение\n1 : да, билет вернуть можно\n2 : нет, вернуть билет нельзя\n3 : не вводить параметр\n4 : прервать создание объекта");
+        System.out.print("Введите значение для параметра 'refundable'\nВыберите соответствующее значение\n1 : да, билет вернуть можно\n2 : нет, вернуть билет нельзя\n3 : не вводить параметр\n4 : прервать создание объекта\n->");
         do {
             try {
 
@@ -140,7 +140,7 @@ public class TicketCreator extends Creator {
                         pass = false;
                         break;
                     case (4):
-                        throw new ExitWhileBuilding("Введена команда exit во время ввода Enum`а");
+                        throw new ExitWhileExecuting("Введена команда exit во время ввода Enum`а");
 
 
                     default:
@@ -157,7 +157,7 @@ public class TicketCreator extends Creator {
     }
 
     private static TicketType askTicketType() {
-        System.out.println("Выберите значение для параметра 'type':\n1 : VIP\n2 : BUDGETARY\n3 : CHEAP\n4 : не вводить параметр\n5 : прервать создание объекта\n(необходимо ввести цифру)");
+        System.out.print("Выберите значение для параметра 'type':\n1 : VIP\n2 : BUDGETARY\n3 : CHEAP\n4 : не вводить параметр\n5 : прервать создание объекта\n(необходимо ввести цифру)\n->");
         TicketType ticketType = null;
         Boolean pass = true;
         do {
@@ -180,7 +180,7 @@ public class TicketCreator extends Creator {
                         pass = false;
                         break;
                     case (5):
-                        throw new ExitWhileBuilding("Введена команда exit во время ввода Enum`а");
+                        throw new ExitWhileExecuting("Введена команда exit во время ввода Enum`а");
                     default:
                         System.out.println("Ошибка ввода\nВыберите одно из предоставленных значений");
                 }

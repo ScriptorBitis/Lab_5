@@ -1,4 +1,4 @@
-package entity;
+package models;
 
 import java.lang.Double;
 
@@ -8,7 +8,7 @@ public class Coordinates implements Validatable {
     private double x;
     private Double y; //Максимальное значение поля: 484, Поле не может быть null
 
-    // я хз, как можно ввести только параметр для y, но пусть
+
     public Double getY() {
         return y;
     }

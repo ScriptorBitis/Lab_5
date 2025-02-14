@@ -1,6 +1,6 @@
 package commands;
 
-import entity.Ticket;
+import models.Ticket;
 import managers.CollectionManager;
 
 public class Show extends Command implements Executable{

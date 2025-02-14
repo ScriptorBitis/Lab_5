@@ -1,7 +1,7 @@
-package entity.creators;
+package models.creators;
 
-import entity.Event;
-import exeptions.ExitWhileBuilding;
+import models.Event;
+import exeptions.ExitWhileExecuting;
 import exeptions.WrongInput;
 
 import java.util.Scanner;
@@ -16,7 +16,7 @@ public class EventCreator extends Creator {
 
         System.out.println("Инициализировано создание ивента");
 
-        System.out.println("Вы хотите создать описание мероприятия?\n1 : да\n2 : нет");
+        System.out.print("Вы хотите создать описание мероприятия?\n1 : да\n2 : нет\n->");
 
         boolean pass= true;
         do {
@@ -59,10 +59,10 @@ public class EventCreator extends Creator {
         boolean pass = true;
         String name;
         do {
-            System.out.println("Введите значение для параметра 'name'");
+            System.out.print("Введите значение для параметра 'name'\n->");
             name = consoleRead.nextLine().trim();
             if (name.equals("exit")){
-                throw new ExitWhileBuilding("Введена команда exit во время ввода имени");
+                throw new ExitWhileExecuting("Введена команда exit во время ввода имени");
             }
             if (name.isEmpty()) {
                 System.out.println("Имя не может быть пустым!");
@@ -76,14 +76,14 @@ public class EventCreator extends Creator {
         return name;
     }
     private  static int askTicketCount(){
-        System.out.println("Введите количество билетов");
+        System.out.print("Введите количество билетов->");
         int ticketCount=0;
         boolean pass=true;
         do{
         try {
             String userRequest=consoleRead.nextLine().trim();
             if (userRequest.equals("exit")){
-                throw new ExitWhileBuilding("Введена команда exit во время ввода количества билетов");
+                throw new ExitWhileExecuting("Введена команда exit во время ввода количества билетов");
             }
             ticketCount=Integer.valueOf(userRequest);
 
@@ -101,10 +101,10 @@ public class EventCreator extends Creator {
     private static String askDescription(){
         String description;
         boolean pass=true;
-        System.out.println("Введите описание мероприятия.Ввод пустой строки будет засчитан как отсутствие описания");
+        System.out.print("Введите описание мероприятия.Ввод пустой строки будет засчитан как отсутствие описания\n->");
         description=consoleRead.nextLine().trim();
         if (description.equals("exit")){
-            throw new ExitWhileBuilding("Введена команда exit во время ввода описания");
+            throw new ExitWhileExecuting("Введена команда exit во время ввода описания");
         }
         if (description.isEmpty()){
             return null;

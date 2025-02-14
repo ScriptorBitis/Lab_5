@@ -1,8 +1,7 @@
 import commands.*;
-import entity.Coordinates;
-import entity.Event;
-import entity.Ticket;
-import entity.TicketType;
+import models.Coordinates;
+import models.Ticket;
+import models.TicketType;
 import managers.CollectionManager;
 import managers.CommandManager;
 import utility.Engine;
@@ -11,12 +10,6 @@ public class Main {
 
 
     public static void main(String[] args) {
-
-        //TODO : РЕПЛЕЙС ИФ ЛОВЕ ДОДЕЛАТЬ????????????
-
-
-
-
 
         CommandManager.setUpCommand(new Help());
         CommandManager.setUpCommand(new Exit());
@@ -42,12 +35,6 @@ public class Main {
         ticket=builder.price(3500).name("Билетик 2").coordinates(coordinates).discount(25).refundable(false).type(TicketType.VIP).build();
         CollectionManager.addTicket("aboba2",ticket);
 
-        int i = 0;
-        do {
-            i++;
-        }while (i<4);
-
-
         Engine.runProgramm();
 
 
@@ -60,7 +47,6 @@ public class Main {
 
 
         remove_any_by_type type : удалить из коллекции один элемент, значение поля type которого эквивалентно заданному
-        \\TODO вроде готова replace_if_lowe null {element} : заменить значение по ключу, если новое значение меньше старого
          */
 
 

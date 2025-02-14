@@ -1,7 +1,7 @@
-package entity.creators;
+package models.creators;
 
-import entity.Coordinates;
-import exeptions.ExitWhileBuilding;
+import models.Coordinates;
+import exeptions.ExitWhileExecuting;
 import exeptions.WrongInput;
 
 import java.util.Scanner;
@@ -24,14 +24,14 @@ public class CoordinatesCreator extends Creator {
     }
 
     private static int askX() {
-        System.out.println("Введите координату x");
+        System.out.print("Введите координату x\n->");
         int x = 0;
         boolean pass = true;
         do {
             try {
                 String userRequest = consoleRead.nextLine().trim();
                 if (userRequest.equals("exit")) {
-                    throw new ExitWhileBuilding("Введена команда exit во время ввода координаты x");
+                    throw new ExitWhileExecuting("Введена команда exit во время ввода координаты x");
                 }
                 x = Integer.valueOf(userRequest);
 
@@ -46,14 +46,14 @@ public class CoordinatesCreator extends Creator {
 
 
     private static Double askY() {
-        System.out.println("Введите координату y. Учтите, что y не может быть больше 484");
+        System.out.print("Введите координату y. Учтите, что значение Y не может быть больше 484\n->");
         Double y = 0.0;
         boolean pass = true;
         do {
             try {
                 String userRequest = consoleRead.nextLine().trim();
                 if (userRequest.equals("exit")) {
-                    throw new ExitWhileBuilding("Создание объекта прервано:\nВведена команда exit во время ввода координаты x");
+                    throw new ExitWhileExecuting("Создание объекта прервано:\nВведена команда exit во время ввода координаты Y");
                 }
                 y = Double.valueOf(userRequest);
                 if (y > 484) {

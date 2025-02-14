@@ -1,7 +1,7 @@
 package commands;
 
-import entity.Ticket;
-import entity.creators.TicketCreator;
+import models.Ticket;
+import models.creators.TicketCreator;
 import managers.CollectionManager;
 
 import java.util.Map;
@@ -19,8 +19,6 @@ public class UpdateId extends Command implements Executable{
             System.out.println("Команда update состоит из команды и ключа .\nВозвращение на домашнюю страницу.");
             return;
         }
-
-
 
         int id;
         Map<String,Ticket> COLLECTION = CollectionManager.getCOLLECTION();

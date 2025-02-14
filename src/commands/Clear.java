@@ -1,7 +1,7 @@
 package commands;
 
 import managers.CollectionManager;
-import managers.CommandManager;
+
 
 public class Clear extends Command implements Executable{
 

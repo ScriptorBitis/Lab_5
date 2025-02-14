@@ -1,7 +1,7 @@
 package commands;
 
-import entity.creators.TicketCreator;
-import entity.Ticket;
+import models.creators.TicketCreator;
+import models.Ticket;
 import managers.CollectionManager;
 
 public class Insert extends Command implements Executable {

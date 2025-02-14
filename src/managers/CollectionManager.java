@@ -1,6 +1,6 @@
 package managers;
 
-import entity.Ticket;
+import models.Ticket;
 
 import java.time.LocalDateTime;
 import java.util.*;

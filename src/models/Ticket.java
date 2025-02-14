@@ -1,10 +1,8 @@
-package entity;
+package models;
 
 import utility.Validatable;
 
 import java.time.LocalDateTime;
-import java.time.LocalDateTime;
-import java.time.ZoneId;
 
 public class Ticket implements Validatable {
     private final int id; //Значение поля должно быть больше 0, Значение этого поля должно быть уникальным, Значение этого поля должно генерироваться автоматически
