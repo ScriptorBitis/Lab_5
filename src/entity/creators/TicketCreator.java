@@ -37,7 +37,7 @@ public class TicketCreator extends Creator {
         boolean pass = true;
         String name;
         do {
-            System.out.println("Введите значение для параметра 'name'");
+            System.out.print("Введите значение для параметра 'name' ->");
             name = consoleRead.nextLine().trim();
             if (name.equals("exit")){
                 throw new ExitWhileBuilding("Введена команда exit во время ввода имени");
