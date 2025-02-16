@@ -3,6 +3,7 @@ package models.creators;
 import models.Event;
 import exeptions.ExitWhileExecuting;
 import exeptions.WrongInput;
+import utility.Engine;
 
 import java.util.Scanner;
 
@@ -62,6 +63,7 @@ public class EventCreator extends Creator {
             System.out.print("Введите значение для параметра 'name'\n->");
             name = consoleRead.nextLine().trim();
             if (name.equals("exit")){
+                Engine.finishProgramm();
                 throw new ExitWhileExecuting("Введена команда exit во время ввода имени");
             }
             if (name.isEmpty()) {
@@ -83,6 +85,7 @@ public class EventCreator extends Creator {
         try {
             String userRequest=consoleRead.nextLine().trim();
             if (userRequest.equals("exit")){
+                Engine.finishProgramm();
                 throw new ExitWhileExecuting("Введена команда exit во время ввода количества билетов");
             }
             ticketCount=Integer.valueOf(userRequest);
@@ -104,6 +107,7 @@ public class EventCreator extends Creator {
         System.out.print("Введите описание мероприятия.Ввод пустой строки будет засчитан как отсутствие описания\n->");
         description=consoleRead.nextLine().trim();
         if (description.equals("exit")){
+            Engine.finishProgramm();
             throw new ExitWhileExecuting("Введена команда exit во время ввода описания");
         }
         if (description.isEmpty()){

@@ -4,8 +4,19 @@ import managers.CollectionManager;
 
 public class RemoveKey extends Command implements Executable {
 
+    public RemoveKey(int wordsCount, CollectionManager collectionManager) {
+        super(wordsCount, collectionManager);
+    }
+
+    public RemoveKey(CollectionManager collectionManager) {
+        super(collectionManager);
+    }
+
     public RemoveKey(int wordsCount) {
         super(wordsCount);
+    }
+
+    public RemoveKey() {
     }
 
     @Override
@@ -18,8 +29,8 @@ public class RemoveKey extends Command implements Executable {
         }
 
 
-        if (CollectionManager.getCOLLECTION().containsKey(splitedConsoleRead[1])){
-            CollectionManager.getCOLLECTION().remove(splitedConsoleRead[1]);
+        if (this.collectionManager.getCOLLECTION().containsKey(splitedConsoleRead[1])){
+            this.collectionManager.getCOLLECTION().remove(splitedConsoleRead[1]);
             System.out.println("Элемент удален!");
 
         }else {

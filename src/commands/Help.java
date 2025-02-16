@@ -1,6 +1,24 @@
 package commands;
 
+import managers.CollectionManager;
+
 public class Help extends Command implements Executable{
+
+    public Help(int wordsCount, CollectionManager collectionManager) {
+        super(wordsCount, collectionManager);
+    }
+
+    public Help(CollectionManager collectionManager) {
+        super(collectionManager);
+    }
+
+    public Help(int wordsCount) {
+        super(wordsCount);
+    }
+
+    public Help() {
+    }
+
     private static final  String helpMessage="info : вывести в стандартный поток вывода информацию о коллекции (тип, дата инициализации, количество элементов)\n" +
             "show : вывести в стандартный поток вывода все элементы коллекции в строковом представлении\n" +
             "insert null {element} : добавить новый элемент с заданным ключом\n" +

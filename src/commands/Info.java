@@ -4,13 +4,28 @@ import managers.CollectionManager;
 
 public class Info extends Command implements Executable{
 
+    public Info(int wordsCount, CollectionManager collectionManager) {
+        super(wordsCount, collectionManager);
+    }
+
+    public Info(CollectionManager collectionManager) {
+        super(collectionManager);
+    }
+
+    public Info(int wordsCount) {
+        super(wordsCount);
+    }
+
+    public Info() {
+    }
+
     @Override
     public void execute(String[] splitedConsoleRead) {
         System.out.println("Информация о коллекции:\n"+
-                "Количество элементов : "+ CollectionManager.getCOLLECTION().size()+"\n"+
-                "Тип : " + CollectionManager.getCOLLECTION().getClass().getSimpleName()+"\n"+
-                "Время инициализации : "+ CollectionManager.getInitializationDate()+"\n"+
-                "Набор доступных ключей : "+ CollectionManager.getCOLLECTION().keySet()+"\n"
+                "Количество элементов : "+ this.collectionManager.getCOLLECTION().size()+"\n"+
+                "Тип : " + this.collectionManager.getCOLLECTION().getClass().getSimpleName()+"\n"+
+                "Время инициализации : "+ this.collectionManager.getInitializationDate()+"\n"+
+                "Набор доступных ключей : "+ this.collectionManager.getCOLLECTION().keySet()+"\n"
 
 
 

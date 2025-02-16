@@ -6,22 +6,35 @@ import java.time.LocalDateTime;
 import java.util.*;
 
 public class CollectionManager {
-    private static final Map<String, Ticket> COLLECTION = new HashMap<>();
-    private static final LocalDateTime initializationDate = LocalDateTime.now().withNano(0);
 
-    public static Map<String, Ticket> getCOLLECTION() {
+    private final Map<String, Ticket> COLLECTION ;
+    private final LocalDateTime initializationDate ;
+
+    public CollectionManager(Map<String, Ticket> ticketMap) {
+        this.COLLECTION=ticketMap;
+        this.initializationDate=LocalDateTime.now().withNano(0);
+    }
+
+    public Map<String, Ticket> getCOLLECTION() {
         return COLLECTION;
     }
 
-    public static void addTicket(String key, Ticket ticket) {
-        COLLECTION.put(key, ticket);
-    }
-
-    public static LocalDateTime getInitializationDate() {
+    public LocalDateTime getInitializationDate() {
         return initializationDate;
     }
 
-    public static Map<String, Ticket> sortByPrice(Map COLLECTION) {
+
+    public  void addTicket(String key, Ticket ticket) {
+        this.COLLECTION.put(key, ticket);
+    }
+
+
+
+
+
+
+
+    public static Map<String, Ticket> sortByPrice(Map<String, Ticket> COLLECTION) {
         List<Ticket> ticketByPrice = new ArrayList<>(COLLECTION.values());
         Collections.sort(ticketByPrice, Comparator.comparing(Ticket::getPrice));
 

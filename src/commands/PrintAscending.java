@@ -7,9 +7,24 @@ import java.util.*;
 
 public class PrintAscending  extends Command implements Executable{
 
+    public PrintAscending(int wordsCount, CollectionManager collectionManager) {
+        super(wordsCount, collectionManager);
+    }
+
+    public PrintAscending(CollectionManager collectionManager) {
+        super(collectionManager);
+    }
+
+    public PrintAscending(int wordsCount) {
+        super(wordsCount);
+    }
+
+    public PrintAscending() {
+    }
+
     @Override
     public void execute(String[] splitedConsoleRead) {
-        Map<String,Ticket> COLLECTION = CollectionManager.getCOLLECTION();
+        Map<String,Ticket> COLLECTION = this.collectionManager.getCOLLECTION();
         List<Ticket> ticketByPrice = new ArrayList<>(COLLECTION.values());
         Collections.sort(ticketByPrice, Comparator.comparing(Ticket::getPrice));
 

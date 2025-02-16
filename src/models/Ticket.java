@@ -3,6 +3,7 @@ package models;
 import utility.Validatable;
 
 import java.time.LocalDateTime;
+import java.util.Objects;
 
 public class Ticket implements Validatable {
     private final int id; //Значение поля должно быть больше 0, Значение этого поля должно быть уникальным, Значение этого поля должно генерироваться автоматически
@@ -33,6 +34,10 @@ public class Ticket implements Validatable {
 
     public Coordinates getCoordinates() {
         return coordinates;
+    }
+
+    public TicketType getType() {
+        return type;
     }
 
     public static class Builder {
@@ -141,5 +146,4 @@ public class Ticket implements Validatable {
                 ", event=" + event +
                 '}';
     }
-
 }

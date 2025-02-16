@@ -8,8 +8,19 @@ import java.util.Map;
 
 public class UpdateId extends Command implements Executable{
 
+    public UpdateId(int wordsCount, CollectionManager collectionManager) {
+        super(wordsCount, collectionManager);
+    }
+
+    public UpdateId(CollectionManager collectionManager) {
+        super(collectionManager);
+    }
+
     public UpdateId(int wordsCount) {
         super(wordsCount);
+    }
+
+    public UpdateId() {
     }
 
     @Override
@@ -21,13 +32,13 @@ public class UpdateId extends Command implements Executable{
         }
 
         int id;
-        Map<String,Ticket> COLLECTION = CollectionManager.getCOLLECTION();
+        Map<String,Ticket> COLLECTION = this.collectionManager.getCOLLECTION();
         try { id=Integer.valueOf(splitedConsoleRead[1]);
             for (Ticket ticket: COLLECTION.values()){
                 if (ticket.getId()==id){
                    for (String key: COLLECTION.keySet()){
                        if (ticket.equals(COLLECTION.get(key))){
-                           CollectionManager.addTicket(key, TicketCreator.createTicket("Для обновление элемента коллеции надо ввести параметры."));
+                           this.collectionManager.addTicket(key, TicketCreator.createTicket("Для обновление элемента коллеции надо ввести параметры."));
                            System.out.println("Элемент с id "+id+" обновлен");
                        }
                    }

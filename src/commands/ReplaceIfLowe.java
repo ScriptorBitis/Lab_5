@@ -9,6 +9,22 @@ import java.util.Scanner;
 
 public class ReplaceIfLowe extends Command implements Executable {
 
+
+    public ReplaceIfLowe() {
+    }
+
+    public ReplaceIfLowe(int wordsCount) {
+        super(wordsCount);
+    }
+
+    public ReplaceIfLowe(CollectionManager collectionManager) {
+        super(collectionManager);
+    }
+
+    public ReplaceIfLowe(int wordsCount, CollectionManager collectionManager) {
+        super(wordsCount, collectionManager);
+    }
+
     @Override
     public void execute(String[] splitedConsoleRead) {
         Scanner consoleRead = new Scanner(System.in);
@@ -19,22 +35,22 @@ public class ReplaceIfLowe extends Command implements Executable {
         boolean pass=true;
         try {
             do {
-                System.out.println("Доступные ключи для доступа к билетам : " + CollectionManager.getCOLLECTION().keySet());
+                System.out.println("Доступные ключи для доступа к билетам : " + this.collectionManager.getCOLLECTION().keySet());
                 System.out.println("Введите ключ");
                 String key = consoleRead.nextLine();
                 if (key.equals("exit")){
                     System.out.println("Возвращение на домашнюю страницу");
                     throw new ExitWhileExecuting("Выход во время обновления по id");
                 }
-                if (CollectionManager.getCOLLECTION().containsKey(key)) {
-                    System.out.println(CollectionManager.getCOLLECTION().get(key).toString());
+                if (this.collectionManager.getCOLLECTION().containsKey(key)) {
+                    System.out.println(this.collectionManager.getCOLLECTION().get(key).toString());
                     System.out.println("Вы хотели сравнить с этим билетом?\n1 : да\n2 : нет\n3 : прервать замену билета");
                     String userDecision = consoleRead.nextLine().trim();
                     switch (userDecision){
                         case ("1"):
                             pass=false;
-                            if (CollectionManager.getCOLLECTION().get(key).getPrice()>ticket.getPrice()){
-                                CollectionManager.getCOLLECTION().replace(key,ticket);
+                            if (this.collectionManager.getCOLLECTION().get(key).getPrice()>ticket.getPrice()){
+                                this.collectionManager.getCOLLECTION().replace(key,ticket);
                                 System.out.println("Билет успешно обновлен!");
                             }else {
                                 System.out.println("Билет не обновлен: новая цена больше старой");

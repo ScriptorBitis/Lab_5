@@ -6,9 +6,19 @@ import managers.CollectionManager;
 
 public class Insert extends Command implements Executable {
 
+    public Insert(int wordsCount, CollectionManager collectionManager) {
+        super(wordsCount, collectionManager);
+    }
+
+    public Insert(CollectionManager collectionManager) {
+        super(collectionManager);
+    }
 
     public Insert(int wordsCount) {
         super(wordsCount);
+    }
+
+    public Insert() {
     }
 
     @Override
@@ -23,7 +33,7 @@ public class Insert extends Command implements Executable {
         Ticket ticket = TicketCreator.createTicket("Инициализировано создание билета");
 
         if (ticket.validate()) {
-            CollectionManager.addTicket(splitedRequest[1], ticket);
+            this.collectionManager.addTicket(splitedRequest[1], ticket);
             System.out.println("Элемент успешно добавлен в коллекцию!");
         } else {
             System.out.println("Какой-то параметр введен неверно!Элемент не будет добавлен в коллекцию");

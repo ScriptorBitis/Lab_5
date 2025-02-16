@@ -8,16 +8,12 @@ import java.util.Map;
 
 
 public class CommandManager {
-    private static Map<String, Executable> COMMAND_MAP = new HashMap<>();
+    private final static Map<String, Executable> COMMAND_MAP = new HashMap<>();
+
 
     public static void setUpCommand(Executable command) {
-        addCommand(command.toString(), command);
+        COMMAND_MAP.put(command.toString(), command);
 
-    }
-
-
-    private static final void addCommand(String name, Executable command) {
-        COMMAND_MAP.put(name, command);
     }
 
     public static final Map<String, Executable> getCommands() {
@@ -27,9 +23,10 @@ public class CommandManager {
     public static void setUserRequest(String[] splitedRequest) {
         String request = splitedRequest[0];
         if (CommandManager.getCommands().containsKey(request)) {
-            CommandManager.getCommands().get(request).execute(splitedRequest);
+            Executable command= CommandManager.getCommands().get(request);
+            command.execute(splitedRequest);
         } else {
-            System.out.println("Команда не распознана! Попробуйте ознакомиться с перечнем команд, введя '\\help'.");
+            System.out.println("Команда не распознана! Попробуйте ознакомиться с перечнем команд, введя 'help'.");
         }
     }
 

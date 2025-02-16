@@ -5,6 +5,7 @@ import models.Ticket;
 import models.TicketType;
 import exeptions.ExitWhileExecuting;
 import exeptions.WrongInput;
+import utility.Engine;
 
 import java.util.Scanner;
 
@@ -38,8 +39,10 @@ public class TicketCreator extends Creator {
         String name;
         do {
             System.out.print("Введите значение для параметра 'name' ->");
+
             name = consoleRead.nextLine().trim();
             if (name.equals("exit")){
+                Engine.finishProgramm();
                 throw new ExitWhileExecuting("Введена команда exit во время ввода имени");
             }
             if (name.isEmpty()) {
@@ -47,7 +50,6 @@ public class TicketCreator extends Creator {
 
             } else {
                 pass = false;
-
             }
 
         } while (pass);
@@ -64,6 +66,7 @@ public class TicketCreator extends Creator {
             try {
                 String userRequest = consoleRead.nextLine().trim();
                 if (userRequest.equals("exit")){
+                    Engine.finishProgramm();
                     throw new ExitWhileExecuting("Введена команда exit во время ввода цены");
                 }
                 if (userRequest.isEmpty()) {
@@ -99,6 +102,7 @@ public class TicketCreator extends Creator {
 
 
                 if (userRequest.equals("exit")){
+                    Engine.finishProgramm();
                     throw new ExitWhileExecuting("Введена команда exit во время ввода скидки");
                 }
                 discount = Float.valueOf(userRequest);
@@ -140,6 +144,7 @@ public class TicketCreator extends Creator {
                         pass = false;
                         break;
                     case (4):
+                        Engine.finishProgramm();
                         throw new ExitWhileExecuting("Введена команда exit во время ввода Enum`а");
 
 
@@ -180,6 +185,7 @@ public class TicketCreator extends Creator {
                         pass = false;
                         break;
                     case (5):
+                        Engine.finishProgramm();
                         throw new ExitWhileExecuting("Введена команда exit во время ввода Enum`а");
                     default:
                         System.out.println("Ошибка ввода\nВыберите одно из предоставленных значений");
@@ -190,7 +196,6 @@ public class TicketCreator extends Creator {
             }
         } while (pass);
         return ticketType;
-
     }
 
 }

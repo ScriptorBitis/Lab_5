@@ -3,6 +3,7 @@ package models.creators;
 import models.Coordinates;
 import exeptions.ExitWhileExecuting;
 import exeptions.WrongInput;
+import utility.Engine;
 
 import java.util.Scanner;
 
@@ -31,6 +32,7 @@ public class CoordinatesCreator extends Creator {
             try {
                 String userRequest = consoleRead.nextLine().trim();
                 if (userRequest.equals("exit")) {
+                    Engine.finishProgramm();
                     throw new ExitWhileExecuting("Введена команда exit во время ввода координаты x");
                 }
                 x = Integer.valueOf(userRequest);
@@ -53,6 +55,7 @@ public class CoordinatesCreator extends Creator {
             try {
                 String userRequest = consoleRead.nextLine().trim();
                 if (userRequest.equals("exit")) {
+                    Engine.finishProgramm();
                     throw new ExitWhileExecuting("Создание объекта прервано:\nВведена команда exit во время ввода координаты Y");
                 }
                 y = Double.valueOf(userRequest);
