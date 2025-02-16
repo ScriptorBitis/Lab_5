@@ -36,4 +36,9 @@ public class Clear extends Command implements Executable{
     public String toString() {
         return "clear";
     }
+
+    @Override
+    public void describe() {
+        System.out.println("clear : очистить коллекцию");
+    }
 }

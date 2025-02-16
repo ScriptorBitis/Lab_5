@@ -37,4 +37,9 @@ public class PrintAscending  extends Command implements Executable{
     public String toString() {
         return "print_ascending";
     }
+
+    @Override
+    public void describe() {
+        System.out.println("print_ascending : вывести элементы коллекции в порядке возрастания");
+    }
 }

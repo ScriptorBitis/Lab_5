@@ -42,4 +42,9 @@ public class RemoveKey extends Command implements Executable {
     public String toString() {
         return "remove_key";
     }
+
+    @Override
+    public void describe() {
+        System.out.println("remove_key null : удалить элемент из коллекции по его ключу");
+    }
 }

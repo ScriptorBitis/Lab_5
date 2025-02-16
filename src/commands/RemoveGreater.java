@@ -49,4 +49,10 @@ public class RemoveGreater extends Command implements Executable {
     public String toString() {
         return "remove_greater";
     }
+
+
+    @Override
+    public void describe() {
+        System.out.println("remove_greater {element} : удалить из коллекции все элементы, превышающие заданный");
+    }
 }

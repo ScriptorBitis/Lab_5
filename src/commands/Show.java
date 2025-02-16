@@ -39,4 +39,9 @@ public class Show extends Command implements Executable{
     public String toString() {
         return "show";
     }
+
+    @Override
+    public void describe() {
+        System.out.println("show : вывести в стандартный поток вывода все элементы коллекции в строковом представлении");
+    }
 }

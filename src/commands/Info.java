@@ -39,4 +39,9 @@ public class Info extends Command implements Executable{
     public String toString() {
         return "info";
     }
+
+    @Override
+    public void describe() {
+        System.out.println("info : вывести в стандартный поток вывода информацию о коллекции");
+    }
 }

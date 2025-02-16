@@ -78,4 +78,9 @@ public class ReplaceIfLowe extends Command implements Executable {
     public String toString() {
         return "replace_if_lowe";
     }
+
+    @Override
+    public void describe() {
+        System.out.println("replace_if_lowe null {element} : заменить значение по ключу, если новое значение меньше старого");
+    }
 }

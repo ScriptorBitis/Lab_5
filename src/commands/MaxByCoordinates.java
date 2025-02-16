@@ -37,4 +37,9 @@ public class MaxByCoordinates extends Command implements Executable {
     public String toString() {
         return "max_by_coordinates";
     }
+
+    @Override
+    public void describe() {
+        System.out.println("max_by_coordinates : вывести любой объект из коллекции, значение поля coordinates которого является максимальным");
+    }
 }

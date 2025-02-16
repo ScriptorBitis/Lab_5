@@ -57,4 +57,9 @@ public class UpdateId extends Command implements Executable{
     public String toString() {
         return "update";
     }
+
+    @Override
+    public void describe() {
+        System.out.println("update id {element} : обновить значение элемента коллекции, id которого равен заданному");
+    }
 }

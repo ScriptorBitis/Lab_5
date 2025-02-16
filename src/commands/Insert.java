@@ -46,4 +46,9 @@ public class Insert extends Command implements Executable {
     public String toString() {
         return "insert";
     }
+    @Override
+    public void describe() {
+        System.out.println("insert null {element} : добавить новый элемент с заданным ключом");
+    }
+
 }

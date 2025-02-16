@@ -29,5 +29,10 @@ public class Exit extends Command implements Executable{
         return "exit";
     }
 
+    @Override
+    public void describe() {
+        System.out.println("exit : завершить программу (без сохранения в файл)");
+    }
+
 
 }

@@ -60,4 +60,9 @@ public class RemoveAnyByType extends Command implements Executable {
     public String toString() {
         return "remove_by_any";
     }
+
+    @Override
+    public void describe() {
+        System.out.println("remove_any_by_type type : удалить из коллекции один элемент, значение поля type которого эквивалентно заданному");
+    }
 }
